@@ -1,8 +1,7 @@
 import streamlit as st
 import streamlit_ext as ste
 import os
-import openai
-
+from openai import OpenAI
 from doc_utils import extract_text_from_upload
 from templates import generate_latex, template_commands
 from prompt_engineering import generate_json_resume, tailor_resume
@@ -50,10 +49,11 @@ if __name__ == '__main__':
                 index=0,  # default to the first option
             )
 
+        client = OpenAI(api_key = os.getenv("OPENAI_API_KEY"))
         # If the OpenAI API Key is not set as an environment variable, prompt the user for it
-        openai_api_key = os.getenv("OPENAI_API_KEY")
-        if not openai_api_key:
-            openai_api_key = st.text_input(
+        api_key = os.getenv("OPENAI_API_KEY")
+        if not api_key:
+            api_key = st.text_input(
                 "Enter your OpenAI API Key: [(click here to obtain a new key if you do not have one)](https://platform.openai.com/account/api-keys)",
                 type="password",
             )
@@ -78,7 +78,7 @@ if __name__ == '__main__':
             try:
                 if improve_check:
                     with st.spinner("Tailoring the resume"):
-                        text = tailor_resume(text, openai_api_key, openai_api_model)
+                        text = tailor_resume(text, api_key, openai_api_model)
 
                 json_resume = generate_json_resume(text, openai_api_key, openai_api_model)
                 latex_resume = generate_latex(chosen_option, json_resume, section_ordering)
