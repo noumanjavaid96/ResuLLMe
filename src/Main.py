@@ -1,6 +1,7 @@
 import streamlit as st
 import streamlit_ext as ste
 import os
+import openai
 from openai import OpenAI
 from doc_utils import extract_text_from_upload
 from templates import generate_latex, template_commands
