@@ -81,7 +81,7 @@ if __name__ == '__main__':
                     with st.spinner("Tailoring the resume"):
                         text = tailor_resume(text, api_key, openai_api_model)
 
-                json_resume = generate_json_resume(text, openai_api_key, openai_api_model)
+                json_resume = generate_json_resume(text, api_key, openai_api_model)
                 latex_resume = generate_latex(chosen_option, json_resume, section_ordering)
 
                 resume_bytes = render_latex(template_commands[chosen_option], latex_resume)
