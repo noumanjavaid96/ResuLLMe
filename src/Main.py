@@ -10,8 +10,7 @@ from render import render_latex
 import json
 
 if __name__ == '__main__':
-    IFRAME = '<iframe src="https://ghbtns.com/github-btn.html?user=IvanIsCoding&repo=ResuLLMe&type=star&count=true&size=large" frameborder="0" scrolling="0" width="170" height="30" title="GitHub"></iframe>'
-
+    
     st.set_page_config(
         page_title="ResuLLMe",
         page_icon=":clipboard:",
@@ -20,8 +19,8 @@ if __name__ == '__main__':
     )
 
     st.markdown(
-        f"""
-        # ResuLLMe {IFRAME}
+        """
+        # ResuLLMe 
         """,
         unsafe_allow_html=True,
     )
